@@ -1,4 +1,4 @@
-/*function enviarEmail(body, to, callback){
+function enviarEmail(body, to, callback){
     setTimeout(() => {
 
         var deuErro = false
@@ -20,4 +20,3 @@ enviarEmail("Hi, you\´re Welcome","Cheers", (time, erro) => {
         console.log("an error ocurred " + erro)
     }   
 });
-*/
