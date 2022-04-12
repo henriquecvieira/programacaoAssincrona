@@ -1,6 +1,5 @@
 function enviarEmail(body, to, callback){
     setTimeout(() => {
-
         var deuErro = false
         if(deuErro){
             callback(12, "\n email sending was failed")

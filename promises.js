@@ -1,20 +1,41 @@
-function sendingEmail (body, to){
-    return new Promise((resolve, reject) =>{
-        setTimeout(() =>{
-            var ocurredError = true            
-            if(!ocurredError){
-                resolve({time: 4, to: "henrique@email.com"})
-            }else{
-                reject("Sorry, something got wrong!")
-            }
-        },2000)
+function getId(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(5)   
+        },1500)
     })
 }
-sendingEmail ("Hi ", "henrique@email.com").then((time, to) =>{
-    console.log(`
-        Time: ${time},
-        To: ${to}
-    `)
-}).catch((error) => {
-    console.log("Nope, what a shame!!! " + error)
+
+function searchEmailOnDataBase(id){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("victorlima@guia.com.br")
+        },2000);
+    })
+}
+
+function sendEmail(corpo, para){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {  
+            var deuErro = false;
+            if(!deuErro){
+                resolve({time: 6, to: "henrique@email.com"}) // Promessa OK!
+            }else{
+                reject("Full line") // Foi mal, eu falhei :(
+            }
+        },4000)
+    });
+}
+
+
+console.log("Beginning!");
+getId().then((id) => {
+    searchEmailOnDataBase(id).then((email) => { 
+        sendEmail("Hi, how you doing?",email).then(() => {
+            console.log("Sent email for user id: " + id)
+        }).catch(err => {
+            console.log(err);
+        })
+    })
 })
+console.log("END");
