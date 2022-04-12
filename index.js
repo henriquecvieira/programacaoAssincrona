@@ -1,25 +1,22 @@
 function enviarEmail(body, to, callback){
     setTimeout(() => {
-        console.log(`
-        to: ${to}
-        -------------------------------------
-        ${body}
-        -------------------------------------
-        De: Henrique Vieira
-        `)
-        callback("ok", 5, "8s");
-    },5000)
+
+        var deuErro = false
+        if(deuErro){
+            callback(12, "\nemail send was failed")
+        }else{
+            callback(12)
+        }       
+    },2000)
 }
 
-console.log(" sending email")
-console.log("your email was sent, just wait a few minutes!")
-enviarEmail("Hi, you are Welcome","Cheers", (status, amount, time) => {
-    console.log(`
-    Status: ${status}
-    ------------------------
-    Contatos: ${amount}
-    ------------------------
-    Tempo de Envio: ${time}
-    `)
-    console.log("its already done!")
-    });
+console.log("start of email sending")
+
+enviarEmail("Hi, you are Welcome","Cheers", (time, erro) => {
+    if(erro == undefined){
+        console.log("TUDO OK!")
+        console.log(`Tempo: ${time}s`)
+    }else{
+        console.log("an error ocurred " + erro)
+    }   
+});
