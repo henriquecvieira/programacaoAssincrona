@@ -9,7 +9,7 @@ function getId(){
 function searchEmailOnDataBase(id){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve("victorlima@guia.com.br")
+            resolve("theodoro@guia.com.br")
         },2000);
     })
 }
@@ -55,20 +55,31 @@ console.log("END");*/
     console.log(getUsersresult)
 }).catch(err)*/
 
-sendEmail()
+/*sendEmail()
     .then((retornoDoEmail) => {
         let retorno= retornoDoEmail
         console.log("sucesso ===> " + JSON.stringify(retorno))
     })
     .catch((erro) => {
         console.log("ERRO ===> " +  erro)
-    })
+    })*/
 
 
 
 async function main(){
-    var user = await getUsers()
-    console.log(user)
+    var id = await getId()
+    var email = await searchEmailOnDataBase(id)
+    sendEmail("Olá, como vai? " , email)
+        .then(() =>{
+            console.log("Sent email ===> ")
+        }).catch((err) => {
+            console.log(err)
+        })
+    
 }
 
 main()
+
+//asyncGetId()
+
+
