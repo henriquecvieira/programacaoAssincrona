@@ -17,18 +17,29 @@ function searchEmailOnDataBase(id){
 function sendEmail(corpo, para){
     return new Promise((resolve, reject) => {
         setTimeout(() => {  
-            var deuErro = false;
+            let deuErro = false;
             if(!deuErro){
                 resolve({time: 6, to: "henrique@email.com"}) // Promessa OK!
             }else{
                 reject("Full line") // Foi mal, eu falhei :(
             }
-        },4000)
+        },1000)
     });
 }
 
+function getUsers(){
+    return new Promise((resolve, reject) =>{
+        setTimeout(() => {
+            resolve([
+                {name: "Henrique" , lang: "CS"},
+                {name: "Theodoro" , lang: "JS"},
+                {name: "Arthur" , lang: "Python"}
+                ], 1000)
+        })             
+    })
+}
 
-console.log("Beginning!");
+/*console.log("Beginning!");
 getId().then((id) => {
     searchEmailOnDataBase(id).then((email) => { 
         sendEmail("Hi, how you doing?",email).then(() => {
@@ -38,4 +49,26 @@ getId().then((id) => {
         })
     })
 })
-console.log("END");
+console.log("END");*/
+
+/*getUsers().then((getUsersresult) => {
+    console.log(getUsersresult)
+}).catch(err)*/
+
+sendEmail()
+    .then((retornoDoEmail) => {
+        let retorno= retornoDoEmail
+        console.log("sucesso ===> " + JSON.stringify(retorno))
+    })
+    .catch((erro) => {
+        console.log("ERRO ===> " +  erro)
+    })
+
+
+
+async function main(){
+    var user = await getUsers()
+    console.log(user)
+}
+
+main()
