@@ -17,11 +17,11 @@ function searchEmailOnDataBase(id){
 function sendEmail(corpo, para){
     return new Promise((resolve, reject) => {
         setTimeout(() => {  
-            let deuErro = false;
+            let deuErro = true;
             if(!deuErro){
-                resolve({time: 6, to: "henrique@email.com"}) // Promessa OK!
+                resolve({time: 6, to: "henrique@email.com"}) 
             }else{
-                reject("Full line") // Foi mal, eu falhei :(
+                reject("Full line") 
             }
         },1000)
     });
@@ -69,13 +69,14 @@ console.log("END");*/
 async function main(){
     var id = await getId()
     var email = await searchEmailOnDataBase(id)
-    sendEmail("Olá, como vai? " , email)
-        .then(() =>{
-            console.log("Sent email ===> ")
-        }).catch((err) => {
-            console.log(err)
-        })
     
+    try{
+        await sendEmail("Olá, como vai? " , email)
+        console.log("sucesso ===> " + email)
+    }
+    catch(erro){    
+        console.log(erro)        
+    }
 }
 
 main()
